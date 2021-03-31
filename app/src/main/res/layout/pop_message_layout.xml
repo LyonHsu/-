@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/horizontal_width"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:id="@+id/message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/triangle"
+        android:padding="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/nameTxt"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white"/>
+        <TextView
+            android:id="@+id/introductionTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="測試文字"
+            android:singleLine="false"
+            android:ellipsize="marquee"
+            android:scrollbarStyle="insideOverlay"
+            android:fadeScrollbars="false"
+            android:scrollbarFadeDuration="2000"
+            android:focusableInTouchMode="true"
+            android:maxLines="6"
+            />
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/triangle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/triangle_top"
+        />
+</RelativeLayout>
