@@ -31,6 +31,7 @@ public class PopMessage {
     ImageView triangle;
     LinearLayout message_layout;
     ImageView line;
+    int yPos = 0;
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -41,16 +42,20 @@ public class PopMessage {
                 int countextLen = textLen*textHight;
                 int lineTop =  introductionTxt.getLayout().getLineTop(textLen);
                 int pos = introductionTxt.getScrollY();
-                int nextHight = pos+textHight;
-                if (countextLen > nextHight) {
-                    if(nextHight>countextLen){
-                        nextHight = countextLen;
+                yPos = pos+textHight/2;
+                if (countextLen > (pos+textHight*(introductionTxt.getMaxLines()-1))) {
+                    if(yPos>=countextLen){
+                        yPos = countextLen;
                     }
-                    introductionTxt.scrollTo(0, nextHight);
+                    introductionTxt.scrollTo(0, yPos);
+                    introductionTxt.postDelayed(this,1000);
                 }
-                else
+                else {
+                    yPos=0;
                     introductionTxt.scrollTo(0, 0);
-                introductionTxt.postDelayed(this,1000);
+                    introductionTxt.postDelayed(this,3*1000);
+                }
+
             }
         }
     };
@@ -102,10 +107,11 @@ public class PopMessage {
         messageView.setVisibility(View.VISIBLE);
         if(introductionTxt!=null){
             introductionTxt.setMovementMethod(ScrollingMovementMethod.getInstance());
-            introductionTxt.scrollTo(0, 0);
+            yPos = 0;
+            introductionTxt.scrollTo(0, yPos);
             int len = TextViewLinesUtil.getTextViewLines(introductionTxt,introductionTxt.getWidth());
-            if(len>5) {
-                introductionTxt.postDelayed(runnable,2500);
+            if(len>introductionTxt.getMaxLines()-1) {
+                introductionTxt.postDelayed(runnable,3*1000);
             }
         }
     }

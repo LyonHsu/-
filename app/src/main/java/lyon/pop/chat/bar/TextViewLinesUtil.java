@@ -27,7 +27,7 @@ public class TextViewLinesUtil {
         }
         int lines = staticLayout.getLineCount();
         int maxLines = textView.getMaxLines();
-        if (maxLines > lines) {
+        if (maxLines < lines) {
             return lines;
         }
         return maxLines;
